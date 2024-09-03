@@ -1,4 +1,3 @@
-name;descr;code
-;medium;M
-;low;L
-;high;H
+code;name;descr
+High;High;High urgency
+Low;Low;Low urgency

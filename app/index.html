@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title> Project Preview </title>
+    <script src="shared-config.js"></script>
+    <script src="https://ui5.sap.com/1.120.17/resources/sap-ui-core.js" 
+            id="sap-ui-bootstrap"
+            data-sap-ui-theme="sap_horizon"
+            data-sap-ui-bindingSyntax="complex" 
+            data-sap-ui-xx-bindingSyntax="complex"
+            data-sap-ui-resourceroots='{"assets": "assets"}' 
+            data-sap-ui-libs="sap.m,sap.uxap,sap.ui.layout,sap.f">
+    </script>
+    <link rel="stylesheet" href="assets/preview.css">
+</head>
+
+<body id="body" class="sapUiBody">
+    <script>
+        "use strict";
+        sap.ui.localResources("assets");
+        (function (jQuery, App, Page) {
+            sap.ui.getCore().attachInit(function () {
+                sap.ui.define([
+                    "sap/ui/core/mvc/Controller",
+                    "sap/ui/model/json/JSONModel"
+                ], function (Controller, JSONModel) {
+                    return Controller.extend("PreviewController", {
+                        onInit: function () {
+
+                            const data = {"Services":[{"ServiceName":"incident_managementService","DetailsURL":"./service/incident_managementService/","Metadata":"./service/incident_managementService/$metadata","Entities":[{"Name":"Incidents","URL":"./service/incident_managementService/Incidents","FioriURL":"$fiori-preview/incident_managementService/Incidents#preview-app"},{"Name":"Customers","URL":"./service/incident_managementService/Customers","FioriURL":"$fiori-preview/incident_managementService/Customers#preview-app"},{"Name":"Conversations","URL":"./service/incident_managementService/Conversations","FioriURL":"$fiori-preview/incident_managementService/Conversations#preview-app"},{"Name":"Status","URL":"./service/incident_managementService/Status","FioriURL":"$fiori-preview/incident_managementService/Status#preview-app"},{"Name":"Urgency","URL":"./service/incident_managementService/Urgency","FioriURL":"$fiori-preview/incident_managementService/Urgency#preview-app"}],"EntitiesCount":5}]}
+                            this.getView().setModel(new JSONModel(data));
+                        }
+                    });
+                });
+                var oApp = new App()
+                var previewView = sap.ui.view({
+                    viewName: "assets.Preview",
+                    type: sap.ui.core.mvc.ViewType.XML
+                });
+                oApp.addPage(new Page({
+                    content: [previewView],
+                    showHeader: false
+                })).placeAt("content");
+            });
+
+        }(jQuery, sap.m.App, sap.m.Page));
+    </script>
+    <div id="content"></div>
+</body>
+
+</html>
